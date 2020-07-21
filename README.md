@@ -15,7 +15,7 @@ This Python script takes the XXX_audio.mp3 file and all the frames files and cre
 
 # id3v2FrameCreator_APIC.py
 
-This Python script creates a new XXX_N*.bin file, containing a picture. Thus, this file contains a new APIC frame. This way, it is easy to create a new ID3v2.4 frame, containing a picture.
+This Python script creates a new XXX_N*.bin file, containing a picture. Thus, this file contains an APIC frame. This way, it is easy to create a new ID3v2.4 frame, containing a picture.
 
 # id3v2TagFramesSizeCheck.py
 
