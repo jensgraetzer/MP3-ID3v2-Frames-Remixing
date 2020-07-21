@@ -7,7 +7,7 @@ Developers of new content ideas for the ID3v2 tag, involving the ID3v2 tag of MP
 This Python script takes a MP3 file with a ID3v2.4 tag and ceates a number of new files. It creates a file with the pure audio data. This audio file has the file name XXX_audio.mp3.
 
 And it creates files for every ID3v2 frame found. The names of these files are XXX_N*.bin, where * is 
-a number plus the name of a ID3v2 frame. The number shows the position of the frame within the ID3v2 tag.
+a number plus the name of a ID3v2 frame. The number defines the position of the frame within the ID3v2 tag.
 
 # id3v2TagReassembler.py
 
