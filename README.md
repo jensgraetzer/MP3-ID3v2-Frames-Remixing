@@ -8,7 +8,7 @@ This Python script takes a MP3 file with a ID3v2.4 tag and ceates a number of ne
 
 And it creates files for every ID3v2 frame found. The names of these files are XXX_N*.bin, where * is a number plus the name of a ID3v2 frame. The number defines the position of the frame within the ID3v2 tag.
 
-Usage: Run the script id3v2TagExtractor.py. A file picker opens. Pick a MP3 file an press the "open" button. 
+Usage: Run the script id3v2TagExtractor.py. A file picker opens. Pick a MP3 file and press the "open" button. 
 
 # id3v2TagReassembler.py
 
