@@ -1,6 +1,6 @@
 # MP3-ID3v2-Frames-Remixing
 
-Creators of new content ideas, involving the ID3v2 tag of MP3 files, need to create content prototypes. The Python scripts of this project may support the content creation. There is a Python script, that exports parts such as the frames of a ID3v2 tag into separate files. Every frame of the ID3V2 tag will be stored in a single file. These files can be edited. Some of the frame files can be deleted. Or a newly created frame file can be added. There is another Python script, that reassembles these files into a new version of the MP3 file.
+Creators of new content ideas, involving the ID3v2 tag of MP3 files, need to create content prototypes. The Python scripts of this project may support this experimental content creation. There is a Python script, that exports parts such as the frames of a ID3v2 tag into separate files. Every frame of the ID3V2 tag will be stored in a single file. These files can be edited. Some of the frame files can be deleted. Or a newly created frame file can be added. There is another Python script, that reassembles these files into a new version of the MP3 file.
 
 # id3v2TagExtractor.py
 
