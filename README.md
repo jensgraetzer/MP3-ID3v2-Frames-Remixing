@@ -12,7 +12,7 @@ Usage: Run the script id3v2TagExtractor.py. A file picker opens. Pick a MP3 file
 
 # id3v2TagReassembler.py
 
-This Python script takes the XXX_audio.mp3 file and all the frames files and creates a new MP3 file from it. This audio file has the file name XXX_newAudio.mp3. It has a ID3v2.4 tag.
+This Python script takes the XXX_audio.mp3 file and all the frames files and creates a new MP3 file from it. The new audio file has the file name XXX_newAudio.mp3. It has a ID3v2.4 tag.
 
 # id3v2FrameCreator_APIC.py
 
