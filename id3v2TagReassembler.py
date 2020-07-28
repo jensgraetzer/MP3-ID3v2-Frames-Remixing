@@ -121,9 +121,9 @@ def writeAudioFileWithHeaderAndFrames(myAudioFileName, myFrameSize, myAllFramesF
     #   https://en.wikiversity.org/wiki/Python_Concepts/Bytes_objects_and_Bytearrays#bytes_objects        
     # Start with 6 bytes 49 44 33 04 00 00 (last byte is "flags")
     if globId3v2Version == 3 :
-        headerBytes = b'\x49\x44\x33\x04\x00\x00'   # first bytes in ID3v2.3 tag
+        headerBytes = b'\x49\x44\x33\x03\x00\x00'   # first bytes in ID3v2.3 tag
     else :
-        headerBytes = b'\x49\x44\x33\x03\x00\x00'   # first bytes in ID3v2.4 tag
+        headerBytes = b'\x49\x44\x33\x04\x00\x00'   # first bytes in ID3v2.4 tag
     
     # calculate the next 4 bytes: Frame size as synchsave integer (4 bytes with 7 bits)
     byte9 = myFrameSize & 0b01111111
