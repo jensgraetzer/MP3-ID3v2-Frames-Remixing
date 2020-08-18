@@ -20,7 +20,7 @@ This Python script creates the binary of an APIC frame, containing a picture. Th
 
 # id3v2FrameCreator_XSRT.py
 
-This Python script creates the binary of an experimental frame called XSRT. This frame contains SRT subtitles. The frame has a format similar to the USLT frame. The Python script reads a text file with the SRT data and stores it in XXX_N999_XSRT.bin file.
+This Python script creates the binary of an experimental frame called XSRT. This frame contains SRT subtitles. The frame has a format similar to the USLT frame. The Python script reads a text file with the SRT data and stores it in a file with the name XXX_N999_XSRT.bin.
 
 # id3v2TagFramesSizeCheck.py
 
