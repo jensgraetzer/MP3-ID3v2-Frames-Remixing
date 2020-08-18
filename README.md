@@ -12,12 +12,16 @@ Usage: Run the script id3v2TagExtractor.py. A file picker opens. Pick a MP3 file
 
 # id3v2TagReassembler.py
 
-This Python script takes the XXX_audio.mp3 file and all the frames files and creates a new MP3 file from it. The new audio file has the file name XXX_newAudio.mp3. It has a ID3v2.4 tag.
+This Python script takes the XXX_audio.mp3 file and all the frames binary files and creates a new MP3 file from it. The new audio file has the file name XXX_newAudio.mp3. It has a ID3v2.4 tag.
 
 # id3v2FrameCreator_APIC.py
 
-This Python script creates a new XXX_N*.bin file, containing a picture. Thus, this file contains an APIC frame. This way, it is easy to create a new ID3v2.4 frame, containing a picture.
+This Python script creates the binary of an APIC frame, containing a picture. The binary is stored in the file with the name XXX_N999_APIC.bin. Adding this binary file to other binary files, than run the id3v2TagReassembler.py script, creates a MP3 file with a picture.
+
+# id3v2FrameCreator_XSRT.py
+
+This Python script creates the binary of an experimental frame called XSRT. This frame contains SRT subtitles. The frame has a format similar to the USLT frame. The Python script reads a text file with the SRT data and stores it in XXX_N999_XSRT.bin file.
 
 # id3v2TagFramesSizeCheck.py
 
-This Python script checks the frame size value, found in the frame files XXX_N*.bin. It tells, wether the value is stored as a synchsave integer value or not. The standard ID3v2.4 requires a synchsave integer value. But the standard ID3v2.3 requires a standard integer value. So, mind the tag version!
+This Python script checks the frame size value, found in the frame binary files XXX_N*.bin. It tells, wether the value is stored as a synchsave integer value or not. The standard ID3v2.4 requires a synchsave integer value. But the standard ID3v2.3 requires a standard integer value. So, mind the tag version!
