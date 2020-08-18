@@ -4,12 +4,13 @@ ID3v2 Frame Creator: APIC
 Builds a new binary file with a ID3v4 APIC frame,
 containing a picture.
 
-Working Steps of this script:
+Steps/Strategy:
 1) Select a image file
-2) Create and save the ID3v4 APIC frame data
+2) Create and save the frame data
 
-J. Grätzer, 2020-05-22
-
+Jens Grätzer
+2020-05-22
+2020-08-16 ... minor bugfixes
 '''
 
 from sys import exit
@@ -20,26 +21,23 @@ from tkinter.filedialog import askopenfilename
 
 # --- SETTINGS ---
 # Prefix of frame bin files
-globBinFilePrefix = "XXX_"
-globFrameFilePrefix = globBinFilePrefix + "N"  # "XXX_N"
-globAudioFileName = globBinFilePrefix + "audio.mp3"  # "XXX_audio.mp3"
-globTempFramesFileName = globBinFilePrefix + "tempFrames.bin"
-globNewAudioFileName = globBinFilePrefix + "newAudio.mp3"
+globBinFilePrefix = "XXX_"  # files starting with this prefix will be deleted at the beginning
+# Target filename (BIN file)
+globTargetFileName = "XXX_N999_APIC.BIN"
 
 # --- INTERNAL GLOBALS ---
-# Frame counter
-#globFrameCounter = globBinFilePrefix = "XXX_"
+# none
 
 # --- FUNCTIONS ---
-def selectImageFile() :
+def selectImageFile(pickerTitle) :
     ''' Calls a file picker window, that asks for picking a MP3 file
     '''
     # Filepicker menue
     root = Tk()
-    root.filename =  askopenfilename(title = "choose your file", filetypes = (("image files",".png .jpg .jpeg"),("all files",".*")))
+    root.filename =  askopenfilename(title = pickerTitle, filetypes = (("image files",".png .jpg .jpeg"),("all files",".*")))
     if root.filename == "" :
         #exit(0) # Successful exit
-        #print ("Nothing selected, using default filename.")    
+        #print ("Nothing selected.")    
         myFilename = ""
     else : 
         myFilename = root.filename
@@ -49,7 +47,7 @@ def selectImageFile() :
 def makeFrameCoreBytes(myImageFileName) :
     # Find the MIME-type of the image
     fileExtension = myImageFileName[-4:].upper()
-    print("writeTempFrameCore() fileExtension=" + fileExtension)
+    print("makeFrameCoreBytes() fileExtension=" + fileExtension)
     mimeType = ""
     if fileExtension == ".PNG" :
         mimeType = "image/png"
@@ -58,7 +56,7 @@ def makeFrameCoreBytes(myImageFileName) :
     else :
         print('writeTempFrameCore() FATAL ERROR - not supported ' + fileExtension)
         exit(1) # Exit with error code 1
-            
+    
     # Start the bytes object with the first byte 03H - sets text encoding to UTF-8
     frameBytes = b'\x03'
     
@@ -86,15 +84,17 @@ def makeFrameCoreBytes(myImageFileName) :
     return frameBytes
 
 
-def writeAPICFrame(myTargetFileName, myFrameCoreBytes) :
+def writeFrame(myTargetFileName, myFrameCoreBytes, myFrameName) :
     # Get the frame data size
     myCoreSize = len(myFrameCoreBytes)
 
     # Create frame header "APIC......" (10 Bytes)
-    # Bytes object - see:
-    #   https://en.wikiversity.org/wiki/Python_Concepts/Bytes_objects_and_Bytearrays#bytes_objects        
-    # Start with 4 bytes 49 44 33 04 (APIC) 
-    headerBytes = b'\x41\x50\x49\x43'
+    # using a Bytes object - see:
+    #   https://en.wikiversity.org/wiki/Python_Concepts/Bytes_objects_and_Bytearrays#bytes_objects
+    #   https://techtutorialsx.com/2018/02/04/python-converting-string-to-bytes-object/
+    # Start with 4 bytes of frame name
+    #headerBytes = b'\x41\x50\x49\x43'  # e.g. APIC frame start with these 4 bytes: 49 44 33 04
+    headerBytes = bytes(myFrameName, 'utf-8')
     
     # Calculate the next 4 bytes: Frame size as synchsave integer (4 bytes with 7 bits)
     byte7 = myCoreSize & 0b01111111
@@ -121,8 +121,8 @@ def writeAPICFrame(myTargetFileName, myFrameCoreBytes) :
 
 
 # --- MAIN SCRIPT ---
-# Write all frames data files into a single temp. file
-imgFileName = selectImageFile()
+# Chose an image file
+imgFileName = selectImageFile("Choose an Image File")
 
 if imgFileName == "" :
     print ("Nothing selected")    
@@ -132,9 +132,7 @@ if imgFileName == "" :
 frameCoreBytes = makeFrameCoreBytes(imgFileName)
 
 # Store the APIC frame in BIN file
-targetFileName = "XXX_N999_APIC.BIN"
-writeAPICFrame(targetFileName, frameCoreBytes)
+writeFrame(globTargetFileName, frameCoreBytes, "APIC")
 
 # Finish
 print("OK, ready.")
-
