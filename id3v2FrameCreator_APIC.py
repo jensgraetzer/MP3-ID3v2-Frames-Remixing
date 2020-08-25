@@ -2,7 +2,7 @@
 ID3v2 Frame Creator: APIC
 -------------------------
 Builds a new binary file with a ID3v4 APIC frame,
-containing a picture.
+containing a picture. Attention: Use ASCII character encoding in picture filenames!
 
 Steps/Strategy:
 1) Select a image file
@@ -11,6 +11,7 @@ Steps/Strategy:
 Jens Grätzer
 2020-05-22
 2020-08-16 ... minor bugfixes
+2020-08-23 ... minor bugfix
 '''
 
 from sys import exit
@@ -57,8 +58,8 @@ def makeFrameCoreBytes(myImageFileName) :
         print('writeTempFrameCore() FATAL ERROR - not supported ' + fileExtension)
         exit(1) # Exit with error code 1
     
-    # Start the bytes object with the first byte 03H - sets text encoding to UTF-8
-    frameBytes = b'\x03'
+    # Start the bytes object with the first byte 00H - sets text encoding to ASCII
+    frameBytes = b'\x00'
     
     # Append MIME type
     frameBytes = frameBytes + bytes(mimeType, 'utf-8') + bytes([0])
@@ -135,4 +136,4 @@ frameCoreBytes = makeFrameCoreBytes(imgFileName)
 writeFrame(globTargetFileName, frameCoreBytes, "APIC")
 
 # Finish
-print("OK, ready.")
+print("OK, ready: " + globTargetFileName)
