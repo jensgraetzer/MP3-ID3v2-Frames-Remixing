@@ -9,8 +9,8 @@ Steps/Strategy:
 2) Create and save the frame data
 
 Jens Grätzer
+2020-10-03 ... Bugfix
 2020-08-22
-
 '''
 
 from sys import exit
@@ -55,9 +55,6 @@ def makeFrameCoreBytes(myInputFileName, myLanguage, myContentDescription) :
 
     # Append content description
     frameBytes = frameBytes + bytes(myContentDescription, 'utf-8') + b'\x00'  
-
-    # Append 00H for picture type  "other" <--- OK for enhanced podcasts
-    frameBytes = frameBytes + b'\x00'
 
     # Append text bytes from file myInputFileName
     '''
