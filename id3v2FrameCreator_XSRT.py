@@ -10,6 +10,7 @@ Steps/Strategy:
 2) Create and save the frame data
 
 Jens Grätzer
+2020-10-03 ... Bugfix
 2020-08-16
 
 '''
@@ -55,10 +56,7 @@ def makeFrameCoreBytes(mySrtFileName, myLanguage, myContentDescription) :
     frameBytes = frameBytes + bytes(myLanguage, 'utf-8')
 
     # Append content description
-    frameBytes = frameBytes + bytes(myContentDescription, 'utf-8') + b'\x00'  
-
-    # Append 00H for picture type  "other" <--- OK for enhanced podcasts
-    frameBytes = frameBytes + b'\x00'
+    frameBytes = frameBytes + bytes(myContentDescription, 'utf-8') + b'\x00'
 
     # Append srt text bytes from file myImageFileName
     '''
