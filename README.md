@@ -2,7 +2,7 @@
 
 Creators of new content ideas, involving the ID3v2 tag of MP3 files, need to create content prototypes. The Python scripts of this project may support this experimental content creation. There is a Python script, that exports parts such as the frames of a ID3v2 tag and the audio itself into separate binary files. Every frame of the ID3v2.4 tag will be stored in a single binary file. These files can be edited. Other binary frame files can be deleted. Or a number of newly created binary frame files can be added. There is another Python script, that reassembles these files into a new version of the MP3 file.
 
-Why is this useful? Having separate binary files of every ID3v2.4 tag makes bitwise editing more easy. And adding new frames is done simply by adding another binary.
+Why is this useful? Having separate binary files of every ID3v2.4 tag makes the bitwise editing (with a hex-editor) more easy. (And, as mentioned, adding new frames or deleting frames is possible too.) This, of course, is not a common task.
 
 # id3v2TagExtractor.py
 
