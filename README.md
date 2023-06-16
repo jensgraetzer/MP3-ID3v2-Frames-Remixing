@@ -1,8 +1,10 @@
 # MP3-ID3v2-Frames-Remixing
 
-Creators of new content ideas, involving the ID3v2 tag of MP3 files, need to create content prototypes. The Python scripts of this project may support this experimental content creation. There is a Python script, that exports parts such as the frames of a ID3v2 tag and the audio itself into separate binary files. Every frame of the ID3v2.4 tag will be stored in a single binary file. These files can be edited. Other binary frame files can be deleted. Or a number of newly created binary frame files can be added. There is another Python script, that reassembles these files into a new version of the MP3 file.
+Creators of new content ideas, involving the ID3v2 tag of MP3 files, need to create content prototypes. The Python scripts of this project may support this experimental content creation. Among the scripts there is a script, that exports parts of the MP3 file into separate binary files. This parts are single frames of the ID3v2.3 or ID3v2.4 tag of the MP3 file. These files can be edited by hex-editor. Or a number of newly created binary frame files can be added. Other binary frame files can be deleted. Than another Python script can be used, that reassembles these files into a new version of the MP3 file.
 
-Why is this useful? Having separate binary files of every ID3v2.4 tag makes the bitwise editing (with a hex-editor) more easy. (And, as mentioned, adding new frames or deleting frames is possible too.) This, of course, is not a common task.
+Why is this useful? Having separate binary files of every ID3v2.4 tag makes the bitwise editing (with a hex-editor) more convenient. (And, as mentioned earlyer, adding new frames or deleting frames is possible too.)
+
+This, of course, is not a common task.
 
 ## id3v2TagExtractor.py
 
@@ -36,7 +38,7 @@ It's possible to create more than one binary of an APIC frame. This is a way to 
 
 This Python script creates of an APIC frame of a ID3v2.4 tag from a lyrics-text file in the LRC format.
 
-One have to consider, that timing precicion of some MP3 players may be poor, depending on software implementation of the playwer, even at CBR (instead of VBR) MP3 files. So better do not use MP3 audio in karaoke players, but M4A audio for instance.
+One have to consider, that timing precicion of some MP3 players may be poor, depending on software implementation of the playwer, even at CBR (instead of VBR) MP3 files. So better do not use MP3 audio in karaoke players, but M4A audio for example.
 
 ## id3v2FrameCreator_USLT.py
 
@@ -46,7 +48,7 @@ This Python script creates the binary of an USLT frame. A USLT frame contains th
 
 This Python script creates the binary of an experimental frame called XSRT. This frame contains SRT (SubRip) subtitles. The Python script lets you chose a SRT file, than it outputs a binary file with the name XXX_N999_XSRT.bin. This frame has a format similar to the USLT frame.
 
-One have to consider, that timing precicion of some MP3 players may be poor, depending on software implementation of the playwer, even at CBR (instead of VBR) MP3 files. So better do not use MP3 audio in karaoke players, but M4A audio for instance.
+One have to consider, that timing precicion of some MP3 players may be poor, depending on software implementation of the playwer, even at CBR (instead of VBR) MP3 files. So better do not use MP3 audio in karaoke players, but M4A audio for example.
 
 ## id3v2TagFramesSizeCheck.py
 
