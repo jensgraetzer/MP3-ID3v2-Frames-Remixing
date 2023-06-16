@@ -1,30 +1,30 @@
 '''
-UNFERTIG ... Alle Logik fehlt noch.
+UNCOMLETE ... 
+(UNFERTIG ... Alle Logik fehlt noch.)
 
 ID3v2 Tag Frames Size Check
 ---------------------------
-This script checks and rewrites the frame size within ID3v2.4 frames, stored 
-in separate .bin files. Attention: ID3v2.4 frames thell their size using
-synchsave integers, but ID3v2.3 frames use standard integers instead.
+This script checks the frame size within ID3v2.4 frames, stored 
+in separate *.bin files.
 
-At the start there are .bin frame files, e.g.:
+This is useful becouse: ID3v2.4 frames thell their size using synchsave integers,
+but ID3v2.3 frames use standard integers instead. These numbers may be different.
+If you reassamble a ID3v2.4 tag be sure to use only *.bin files, that fit
+to the ID3v2.4 standard.
 
-* XXX_N001_TIT2.bin    # The .bin frames file wildcard is: XXX_N*.bin
+Usage: At the beginning there are some ID3v2 frame files (*.bin files), e.g.:
+
+* XXX_N001_TIT2.bin      # The .bin frames file wildcard is: XXX_N*.bin
 * XXX_N002_TPE1.bin
 * XXX_N003_TDRL.bin
 
-These frame files originate from the "ID3v2 Tag Exporter" (_id3v2TagExtractor.py).
+Than run the script.
+
+This script checks the validity of the frame size value given in the frame.
+It outputs, weather the size given fits to ID3v2.4 and/or ID3v2.3 standard,
+or is a wrong value at all.
 
 This script doesn't check the validity of other data than the size.
-
-Working Steps of this script:
-* Read a .bin frame file into a array.
-* Get the array size.
-* Get the frame size value found in the frame header in the array
-  data. In ID3v2.4 frames the size is stored by an synchsave integer.
-* Compare the array size with the size value found in the 
-  frame header. Print the result.
-* Do this with all frame files.
 
 J. Grätzer
 2020-07-21
@@ -37,8 +37,6 @@ import glob
 
 
 # --- SETTINGS ---
-# Prefix of frame bin files
-#globId3v2Version = 4    # 3 or 4 (4 is recommended)
 globBinFilePrefix = "XXX_"
 globFrameFilePrefix = globBinFilePrefix + "N"  # "XXX_N"
 
@@ -109,19 +107,19 @@ def doAllFramesFile() :
                     bytesObject[5] == siByte2 and
                     bytesObject[6] == siByte3 and
                     bytesObject[7] == siByte4) :
-                    print('    OK, the frame size fits ID3v2.4')
+                    print('    Valid frame size - ID3v2.4')
                     ok = True
                 if (bytesObject[4] == iByte1 and
                     bytesObject[5] == iByte2 and
                     bytesObject[6] == iByte3 and
                     bytesObject[7] == iByte4) :
                     if ok :
-                        print('    It also fits ID3v2.3')
+                        print('    Valid frame size - ID3v2.3 as well')
                     else :
-                        print('    The frame size only fits ID3v2.3')
+                        print('    Valid frame size - ID3v2.3 only')
                     ok = True
                 if ok == False :  
-                    print('    ERROR: The frame size is wrong.')
+                    print('    ERROR: Wrong frame size.')
                     
         except FileNotFoundError :
             print('writeAllFramesFile() FATAL ERROR')

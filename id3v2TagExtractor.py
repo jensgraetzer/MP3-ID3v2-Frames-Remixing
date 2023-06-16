@@ -1,11 +1,12 @@
 '''
 ID3v2 Tag Extractor
 -------------------
-Reads MP3 files with an ID3v2 tag. And it:
-* deletes all old files XXX_*.*
-* writes the pure audio data (without ID3v2 tag) into file XXX_audio.mp3
-* writes the ID3v2 header into file XXX_header.bin
-* writes every ID3v2 frame into an own file,
+* Opens a file picker for selection of a MP3 file
+* Reads the MP3 file selected. Makes shure, that it contains a ID3v2.3 or ID3v2.4 tag.
+* Deletes all older files XXX_*.*
+* Writes the pure audio data (without ID3v2 tag) into file XXX_audio.mp3
+* Writes the ID3v2 header into file XXX_header.bin
+* Writes every ID3v2 frame into an own file,
   e.g. file XXX_01_TIT2.bin (01 is the position of the frame within the tag)
 
 J. Grätzer, 2020-06-07
@@ -205,13 +206,7 @@ def selectMp3File() :
     '''
     # Filepicker menue
     root = Tk()
-    root.filename =  askopenfilename(title = "choose your file", filetypes = (("mp3 audio files","*.mp3"),("all files","*.*")))
-    if root.filename == "" :
-        #exit(0) # Successful exit
-        #print ("Nothing selected, using default filename.")    
-        myFilename = ""
-    else : 
-        myFilename = root.filename
+    myFilename =  askopenfilename(title = "choose your file", filetypes = (("mp3 audio files","*.mp3"),("all files","*.*")))
     root.withdraw()  # Close the Tk window
     return myFilename
 

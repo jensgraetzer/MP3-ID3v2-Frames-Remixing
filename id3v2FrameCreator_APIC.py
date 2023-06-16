@@ -1,7 +1,7 @@
 '''
 ID3v2 Frame Creator: APIC
 -------------------------
-Builds a new binary file with a ID3v4 APIC frame,
+Builds a new binary file with a ID3v2.4 APIC frame,
 containing a picture. Attention: Use ASCII character encoding in picture filenames!
 
 Steps/Strategy:
@@ -15,8 +15,6 @@ Jens Grätzer
 '''
 
 from sys import exit
-import os
-import ntpath
 from tkinter import *
 from tkinter.filedialog import askopenfilename
 
@@ -35,13 +33,7 @@ def selectImageFile(pickerTitle) :
     '''
     # Filepicker menue
     root = Tk()
-    root.filename =  askopenfilename(title = pickerTitle, filetypes = (("image files",".png .jpg .jpeg"),("all files",".*")))
-    if root.filename == "" :
-        #exit(0) # Successful exit
-        #print ("Nothing selected.")    
-        myFilename = ""
-    else : 
-        myFilename = root.filename
+    myFilename =  askopenfilename(title = pickerTitle, filetypes = (("image files",".png .jpg .jpeg"),("all files",".*")))
     root.withdraw()  # Close the Tk window
     return myFilename
 

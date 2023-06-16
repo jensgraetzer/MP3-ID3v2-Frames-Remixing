@@ -1,9 +1,9 @@
 '''
 ID3v2 Frame Creator: XSRT
 -------------------------
-Builds a new binary file with a ID3v4 XSRT frame,
-containing SRT subtitles text. A XSRT frame is an experimental frame,
-containing SRT text in a format similar to the USLT frame.
+Builds a new binary file with an experimental ID3v2.4 XSRT frame,
+containing SRT (SubRip) subtitles text.
+(This program is largely similar to _id3v2FrameCreator_USLT.py.)
 
 Steps/Strategy:
 1) Select a srt file
@@ -16,8 +16,6 @@ Jens Grätzer
 '''
 
 from sys import exit
-import os
-import ntpath
 from tkinter import *
 from tkinter.filedialog import askopenfilename
 
@@ -34,17 +32,11 @@ globTargetDescription = ''  # Content description
 
 # --- FUNCTIONS ---
 def selectImageFile(pickerTitle) :
-    ''' Calls a file picker window, that asks for picking a MP3 file
+    ''' Calls a file picker window, that asks for picking a SRT file
     '''
     # Filepicker menue
     root = Tk()
-    root.filename =  askopenfilename(title = pickerTitle, filetypes = (("srt files",".srt"),("all files",".*")))
-    if root.filename == "" :
-        #exit(0) # Successful exit
-        #print ("Nothing selected.")    
-        myFilename = ""
-    else : 
-        myFilename = root.filename
+    myFilename =  askopenfilename(title = pickerTitle, filetypes = (("srt files",".srt"),("all files",".*")))
     root.withdraw()  # Close the Tk window
     return myFilename
 

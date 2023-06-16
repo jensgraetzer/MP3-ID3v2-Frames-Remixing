@@ -1,7 +1,7 @@
 '''
 ID3v2 Frame Creator: USLT
 -------------------------
-Builds a new binary file with a ID3v4 USLT frame, containing text.
+Builds a new binary file with a ID3v2.4 USLT frame, containing text.
 (This program is largely similar to _id3v2FrameCreator_XSRT.py.)
 
 Steps/Strategy:
@@ -14,8 +14,6 @@ Jens Grätzer
 '''
 
 from sys import exit
-import os
-import ntpath
 from tkinter import *
 from tkinter.filedialog import askopenfilename
 
@@ -32,17 +30,11 @@ globTargetDescription = ''  # Content description
 
 # --- FUNCTIONS ---
 def selectInputFile(pickerTitle) :
-    ''' Calls a file picker window, that asks for picking a MP3 file
+    ''' Calls a file picker window, that asks for picking a TXT file
     '''
     # Filepicker menue
     root = Tk()
-    root.filename =  askopenfilename(title = pickerTitle, filetypes = (("txt files",".txt"),("all files",".*")))
-    if root.filename == "" :
-        #exit(0) # Successful exit
-        #print ("Nothing selected.")    
-        myFilename = ""
-    else : 
-        myFilename = root.filename
+    myFilename =  askopenfilename(title = pickerTitle, filetypes = (("txt files",".txt"),("all files",".*")))
     root.withdraw()  # Close the Tk window
     return myFilename
 

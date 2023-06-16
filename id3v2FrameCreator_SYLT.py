@@ -1,7 +1,7 @@
 '''
 ID3v2 Frame Creator: SYLT
 -------------------------
-Builds a new binary file with a ID3v4 SYLT frame from a LRC file.
+Builds a new binary file with a ID3v2.4 SYLT frame from a LRC file.
 
 Steps/Strategy:
 1) Select a LRC file
@@ -34,13 +34,7 @@ def selectImageFile(pickerTitle) :
     '''
     # Filepicker menue
     root = Tk()
-    root.filename =  askopenfilename(title = pickerTitle, filetypes = (("lrc files",".lrc"),("all files",".*")))
-    if root.filename == "" :
-        #exit(0) # Successful exit
-        #print ("Nothing selected.")    
-        myFilename = ""
-    else : 
-        myFilename = root.filename
+    myFilename =  askopenfilename(title = pickerTitle, filetypes = (("lrc files",".lrc"),("all files",".*")))
     root.withdraw()  # Close the Tk window
     return myFilename
 
